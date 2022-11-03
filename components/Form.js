@@ -1,14 +1,7 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
-export default function InputForm() {
-      const [data, setData] = useState([])
-      useEffect(() => {
-            fetch('http://localhost:5508/dummies')
-              .then((res) => res.json())
-              .then((data) => {
-                setData(data)
-              })
-          }, [data])
+export default function InputForm({refresh}) {
+      // const [data, setData] = useState(null)
       const handleSubmit = async (event) => {
             event.preventDefault()
             const data = {
@@ -24,6 +17,12 @@ export default function InputForm() {
             const response = await fetch("http://localhost:5508/dummies", options)
             // const result = await response.json()
             event.target.yourname.value = null
+            refresh()
+            // fetch('http://localhost:5508/dummies')
+            // .then((res) => res.json())
+            // .then((data) => {
+            // setData(data)
+            // })
       }
 return (
 <form onSubmit={handleSubmit}>
