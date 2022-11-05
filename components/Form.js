@@ -1,28 +1,14 @@
-// import { useState, useEffect } from 'react';
+import postDummies from "../fetch/post/dummies"
 
 export default function InputForm({refresh}) {
-      // const [data, setData] = useState(null)
       const handleSubmit = async (event) => {
             event.preventDefault()
             const data = {
                   name: event.target.yourname.value,
             }
-            const options = {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(data),
-            }
-            const response = await fetch("http://localhost:5508/dummies", options)
-            // const result = await response.json()
+            await postDummies(data)
             event.target.yourname.value = null
             refresh()
-            // fetch('http://localhost:5508/dummies')
-            // .then((res) => res.json())
-            // .then((data) => {
-            // setData(data)
-            // })
       }
 return (
 <form onSubmit={handleSubmit}>
